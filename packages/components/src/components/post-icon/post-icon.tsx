@@ -11,83 +11,83 @@ const ANIMATION_KEYS = [
   'throb'
 ];
 
-/**
- * @class PostIcon - representing a stencil component
- */
+
 @Component({
   tag: 'post-icon',
   styleUrl: 'post-icon.scss',
   shadow: true,
 })
 export class PostIcon {
+  private initialPath: string;
+  private path: string;
+  private svgSource = '<svg viewBox="0 0 16 16"></svg>';
+
+  @State() svgOutput: string;
+
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
    */
-  @Prop() name: string;
-
-  /**
-   * The base path, where the icons are located (must be a public url).
-   */
-  @Prop() base?: string;
-
-  /**
-   * When set to `true`, the icon will be flipped horizontally.
-   */
-  @Prop() flipH?: boolean;
-
-  /**
-   * When set to `true`, the icon will be flipped vertically.
-   */
-  @Prop() flipV?: boolean;
-
-  /**
-   * The `number` for the css `scale` transformation.
-   */
-  @Prop() scale?: number;
-
-  /**
-   * The `number` of degree for the css `rotate` transformation.
-   */
-  @Prop() rotate?: number;
-
-  /**
-   * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
-   */
-  @Prop() animation?: string;
-  @State() initialPath: string;
-  @State() path: string;
-  @State() svgSource: string = '<svg viewBox="0 0 16 16"></svg>';
-  @State() svgOutput: string;
+  @Prop() readonly name: string;
 
   @Watch('name')
   validateName(newValue = this.name) {
     checkType(newValue, 'string', 'The post-icon "name" prop should be a string.');
   }
 
+  /**
+   * The base path, where the icons are located (must be a public url).
+   */
+  @Prop() readonly base?: string;
+
   @Watch('base')
   validateBase(newValue = this.base) {
     checkEmptyOrType(newValue, 'string', 'The post-icon "base" prop should be a string.');
   }
+
+  /**
+   * When set to `true`, the icon will be flipped horizontally.
+   */
+  @Prop() readonly flipH?: boolean;
 
   @Watch('flipH')
   validateFlipH(newValue = this.flipH) {
     checkEmptyOrType(newValue, 'boolean', 'The post-icon "flipH" prop should be a boolean.');
   }
 
+  /**
+   * When set to `true`, the icon will be flipped vertically.
+   */
+  @Prop() readonly flipV?: boolean;
+
   @Watch('flipV')
   validateFlipV(newValue = this.flipV) {
     checkEmptyOrType(newValue, 'boolean', 'The post-icon "flipV" prop should be a boolean.');
   }
+
+  /**
+   * The `number` for the css `scale` transformation.
+   */
+  @Prop() readonly scale?: number;
 
   @Watch('scale')
   validateScale(newValue = this.scale) {
     checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
   }
 
+  /**
+   * The `number` of degree for the css `rotate` transformation.
+   */
+  @Prop() readonly rotate?: number;
+
   @Watch('rotate')
   validateRotate(newValue = this.rotate) {
     checkEmptyOrType(newValue, 'number', 'The post-icon "rotate" prop should be a number.');
   }
+
+  /**
+   * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+   */
+  @Prop() readonly animation?: string;
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
@@ -143,14 +143,7 @@ export class PostIcon {
     this.svgOutput = helperElement.innerHTML;
   }
 
-  getPath(basePath: string) {
-    return new URL(
-      [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
-      window.location.origin,
-    ).toString();
-  }
-
-  fetchSVG() {
+  private fetchSVG() {
     fetch(this.path)
       .then(response => response.text())
       .then(textResponse => {
@@ -178,6 +171,13 @@ export class PostIcon {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  private getPath(basePath: string) {
+    return new URL(
+      [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
+      window.location.origin,
+    ).toString();
   }
 
   render() {

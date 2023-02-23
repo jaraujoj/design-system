@@ -20,9 +20,6 @@ export namespace Components {
          */
         "toggle": (open?: boolean) => Promise<boolean>;
     }
-    /**
-     * @class PostIcon - representing a stencil component
-     */
     interface PostIcon {
         /**
           * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
@@ -95,9 +92,6 @@ declare global {
         prototype: HTMLPostCollapsibleElement;
         new (): HTMLPostCollapsibleElement;
     };
-    /**
-     * @class PostIcon - representing a stencil component
-     */
     interface HTMLPostIconElement extends Components.PostIcon, HTMLStencilElement {
     }
     var HTMLPostIconElement: {
@@ -141,9 +135,6 @@ declare namespace LocalJSX {
          */
         "headingLevel"?: number;
     }
-    /**
-     * @class PostIcon - representing a stencil component
-     */
     interface PostIcon {
         /**
           * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
@@ -209,9 +200,6 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
-            /**
-             * @class PostIcon - representing a stencil component
-             */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;

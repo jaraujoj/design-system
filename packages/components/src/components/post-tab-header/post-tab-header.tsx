@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, h, Method, Prop, State, Watch } from '@stencil/core';
-import { checkBoolean, getChildIndex } from '../../utils';
+import { checkType, getChildIndex } from '../../utils';
 
 @Component({
   tag: 'post-tab-header',
@@ -31,7 +31,7 @@ export class PostTabHeader {
   @Watch('active')
   validateActive(newValue = this.active) {
     if (typeof newValue !== 'undefined') {
-      checkBoolean(newValue, 'The post-tab-header "active" prop should be a boolean.');
+      checkType(newValue, 'boolean', 'The post-tab-header "active" prop should be a boolean.');
     }
 
     if (newValue) {

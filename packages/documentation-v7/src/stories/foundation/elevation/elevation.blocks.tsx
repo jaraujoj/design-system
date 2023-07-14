@@ -1,8 +1,3 @@
-import { parse } from '../../../utils/sass-export';
-import scss from './elevation.module.scss';
-
-export const SCSS_VARIABLES = parse(scss);
-
 export const ElevationTile = (props: { level: string }) => {
   return (
     <div className={`elevation-tile ${props.level}`}>

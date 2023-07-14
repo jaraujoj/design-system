@@ -1,8 +1,3 @@
-import { parse } from '../../../utils/sass-export';
-import scss from './color.module.scss';
-
-export const SCSS_VARIABLES = parse(scss);
-
 export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolean }) => {
   return (
     <article className="color-swatch">

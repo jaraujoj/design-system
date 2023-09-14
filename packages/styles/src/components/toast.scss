@@ -44,7 +44,6 @@
   z-index: commons.$zindex-alert;
   display: flex;
   flex-direction: column;
-  pointer-events: none;
 
   .toast {
     width: 25rem;
